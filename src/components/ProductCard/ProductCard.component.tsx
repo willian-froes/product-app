@@ -31,16 +31,16 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <RemoveButton name="delete-outline" />
         </CardHeader>
 
-        <ProductTotalValue>R$ 111,98</ProductTotalValue>
+        <ProductTotalValue>{product.cost * product.quantity}</ProductTotalValue>
 
         <CardFooter>
           <ProductValueContainer>
-            <ProductValue>R$ 55,99</ProductValue>
+            <ProductValue>{product.cost}</ProductValue>
             <ProductValueIndicator>/item</ProductValueIndicator>
           </ProductValueContainer>
 
-          <Button size="small" icon="horizontal-rule1" variant="outline" />
-          <ProductQuantity>2</ProductQuantity>
+          <Button size="small" icon="remove" variant="outline" />
+          <ProductQuantity>{product.quantity}</ProductQuantity>
           <Button size="small" icon="add" />
         </CardFooter>
       </ProductContent>

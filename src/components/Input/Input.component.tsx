@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 
 import { iconByType, inputMasks, keyboardType } from './Input.constants'
-import { Icon, InputField, InputWrapper, Wrapper } from './Input.style'
+import { Icon, InputField, InputWrapper, Label, Wrapper } from './Input.style'
 import { InputProps } from './Input.types'
 
 export const Input = ({
@@ -57,8 +57,11 @@ export const Input = ({
       />
     )
 
+  const resolveLabel = () => label && <Label>{label}</Label>
+
   return (
     <Wrapper>
+      {resolveLabel()}
       <InputWrapper>
         <InputField
           onPress={onPress}
