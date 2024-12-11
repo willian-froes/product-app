@@ -17,6 +17,8 @@ export type ButtonColor =
   | 'success'
   | 'danger'
 
+export type ButtonAlign = 'flex-start' | 'none' | 'flex-end'
+
 export interface ButtonProps {
   label?: string
   icon?: any
@@ -25,4 +27,5 @@ export interface ButtonProps {
   variant?: ButtonVariant
   radius?: ButtonRadius
   size?: ButtonSize
+  align?: ButtonAlign
 }

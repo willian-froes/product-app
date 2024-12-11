@@ -1,9 +1,14 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, ScrollView } from 'react-native'
 
 import {
-  GoToPreferencesButton,
+  EmptyProductsListMessage,
   Header,
+  productsContentContainerStyle,
+  ProductsListHeader,
+  ProductsListHeaderInfoContainer,
+  ProductsListTitle,
+  sortOptionsContentContainerStyle,
   Subtitle,
   Title,
   Wrapper,
@@ -15,19 +20,25 @@ import { ProductFormView } from './view/ProductForm/product-form.view'
 
 export const ProductsView = () => {
   const {
-    products,
+    filteredProducts,
     fetchProducts,
     renderProductItem,
     searchText,
     setSearchText,
     isProductFormModalOpen,
     setIsProductFormModalOpen,
+    goToPreferences,
   } = useProductsViewModel()
 
   return (
     <Wrapper>
       <Header>
-        <GoToPreferencesButton name="settings" />
+        <Button
+          icon="settings"
+          variant="outline"
+          align="flex-end"
+          onPress={goToPreferences}
+        />
 
         <Title>Olá</Title>
         <Subtitle>Gerencie seus produtos</Subtitle>
@@ -44,9 +55,52 @@ export const ProductsView = () => {
       </Header>
 
       <FlatList
-        data={products}
+        ListHeaderComponent={
+          <ProductsListHeader>
+            <ProductsListHeaderInfoContainer>
+              <ProductsListTitle>Seus produtos</ProductsListTitle>
+              <Subtitle>Ordenar por</Subtitle>
+            </ProductsListHeaderInfoContainer>
+            <ScrollView
+              horizontal
+              contentContainerStyle={sortOptionsContentContainerStyle}>
+              <Button
+                size="small"
+                variant="filled"
+                radius="circle"
+                label="Id"
+              />
+              <Button
+                size="small"
+                variant="outline"
+                radius="circle"
+                label="Nome"
+              />
+              <Button
+                size="small"
+                variant="outline"
+                radius="circle"
+                label="Quantidade"
+              />
+              <Button
+                size="small"
+                variant="outline"
+                radius="circle"
+                label="Valor uni."
+              />
+            </ScrollView>
+          </ProductsListHeader>
+        }
+        data={filteredProducts}
         renderItem={renderProductItem}
         keyExtractor={item => item.id.toString()}
+        contentContainerStyle={productsContentContainerStyle}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={
+          <EmptyProductsListMessage>
+            Nenhum produto encontrado ou cadastrado.
+          </EmptyProductsListMessage>
+        }
       />
 
       <ProductFormView

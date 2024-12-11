@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 import MaterialIcon from '@react-native-vector-icons/material-icons'
 
 import {
+  ButtonAlign,
   ButtonColor,
   ButtonRadius,
   ButtonSize,
@@ -17,7 +18,9 @@ export const Wrapper = styled.TouchableOpacity.attrs({
   color: ButtonColor
   radius: ButtonRadius
   size: ButtonSize
+  align: ButtonAlign
 }>`
+  align-self: ${({ align }) => align};
   flex-direction: row;
   align-items: center;
   justify-content: center;

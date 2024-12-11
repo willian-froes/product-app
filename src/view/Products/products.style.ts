@@ -1,23 +1,16 @@
-import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
-import MaterialIcon from '@react-native-vector-icons/material-icons'
 
 export const Wrapper = styled.View`
+  flex: 1;
   background: ${({ theme }) => theme.color.background.normal};
-  height: ${Dimensions.get('window').height}px;
   padding: ${({ theme }) => theme.spacing.l};
+  padding-bottom: 0px;
+  gap: ${({ theme }) => theme.spacing.xxl};
 `
 
 export const Header = styled.View`
   gap: ${({ theme }) => theme.spacing.m};
 `
-
-export const GoToPreferencesButton = styled(MaterialIcon).attrs(
-  ({ theme }) => ({
-    size: 24,
-    color: theme.color.gray.normal,
-  }),
-)``
 
 export const Title = styled.Text`
   color: ${({ theme }) => theme.color.text.normal};
@@ -30,3 +23,30 @@ export const Subtitle = styled.Text`
   font-weight: ${({ theme }) => theme.font.weight.bold};
   font-size: ${({ theme }) => theme.font.size.body.sub.mobile};
 `
+
+export const EmptyProductsListMessage = styled.Text`
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  color: ${({ theme }) => theme.color.gray.normal};
+  text-align: center;
+`
+
+export const ProductsListHeaderInfoContainer = styled.View``
+
+export const ProductsListHeader = styled.View`
+  gap: ${({ theme }) => theme.spacing.s};
+`
+
+export const ProductsListTitle = styled.Text`
+  color: ${({ theme }) => theme.color.text.normal};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  font-size: ${({ theme }) => theme.font.size.heading.normal.h3.mobile};
+`
+
+export const productsContentContainerStyle = {
+  gap: 16,
+  paddingBottom: 20,
+}
+
+export const sortOptionsContentContainerStyle = {
+  gap: 12,
+}

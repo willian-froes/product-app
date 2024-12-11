@@ -62,7 +62,7 @@ export const ProductFormView = ({
               color="danger"
               onPress={() => {
                 clearForm()
-                setIsOpen(true)
+                setIsOpen(false)
               }}
             />
           </ButtonsContainer>

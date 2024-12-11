@@ -11,6 +11,7 @@ export const Button = ({
   color = 'primary',
   radius = 'default',
   size = 'medium',
+  align = 'none',
 }: ButtonProps) => {
   const resolveIcon = () =>
     icon && <Icon name={icon} iconSize={size} {...{ variant, color }} />
@@ -19,7 +20,7 @@ export const Button = ({
     label && <Label {...{ variant, color, size }}>{label}</Label>
 
   return (
-    <Wrapper {...{ onPress, variant, color, radius, size }}>
+    <Wrapper {...{ onPress, variant, color, radius, size, align }}>
       {resolveIcon()}
       {resolveLabel()}
     </Wrapper>
