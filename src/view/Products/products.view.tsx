@@ -20,8 +20,8 @@ export const ProductsView = () => {
     renderProductItem,
     searchText,
     setSearchText,
-    isCreateProductModalOpen,
-    setIsCreateProductModalOpen,
+    isProductFormModalOpen,
+    setIsProductFormModalOpen,
   } = useProductsViewModel()
 
   return (
@@ -39,9 +39,10 @@ export const ProductsView = () => {
         />
         <Button
           label="Adicionar novo produto"
-          onPress={() => setIsCreateProductModalOpen(true)}
+          onPress={() => setIsProductFormModalOpen(true)}
         />
       </Header>
+
       <FlatList
         data={products}
         renderItem={renderProductItem}
@@ -49,9 +50,9 @@ export const ProductsView = () => {
       />
 
       <ProductFormView
-        isOpen={isCreateProductModalOpen}
-        setIsOpen={setIsCreateProductModalOpen}
-        onCreateProduct={async () => fetchProducts()}
+        isOpen={isProductFormModalOpen}
+        setIsOpen={setIsProductFormModalOpen}
+        onCreateOrUpdateProduct={async () => fetchProducts()}
       />
     </Wrapper>
   )

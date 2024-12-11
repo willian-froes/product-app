@@ -10,7 +10,7 @@ import { ProductService } from '../../../../services/product.service'
 import { Product } from '../../../../types/Product'
 
 export const useProductFormViewModel = ({
-  onCreateProduct,
+  onCreateOrUpdateProduct,
 }: UseProductFormViewModel): ProductFormViewModel => {
   const [form, setForm] = useState<ProductForm>(productFormInitialState)
 
@@ -22,7 +22,7 @@ export const useProductFormViewModel = ({
     try {
       await ProductService.saveProduct(form as unknown as Product)
       clearForm()
-      onCreateProduct?.()
+      onCreateOrUpdateProduct?.()
     } catch {
       console.error('[ERROR]: Failed to save product')
     }

@@ -28,6 +28,24 @@ export const ProductService = {
 
     await AsyncStorage.setItem('products', parsedUpdatedProducts)
   },
+  async updateProduct(updatedProduct: Product): Promise<void> {
+    const products: Product[] = await this.getProducts()
+
+    const productIndex = products.findIndex(
+      product => product.id === updatedProduct.id,
+    )
+
+    if (productIndex !== -1) {
+      const updatedProducts = products.map((product, index) =>
+        index === productIndex ? { ...product, ...updatedProduct } : product,
+      )
+
+      const parsedUpdatedProducts: string = JSON.stringify(updatedProducts)
+      await AsyncStorage.setItem('products', parsedUpdatedProducts)
+    } else {
+      console.log('[ERROR]: Failed to find product')
+    }
+  },
   async removeProduct(productId: number): Promise<void> {
     const products: Product[] = await this.getProducts()
 

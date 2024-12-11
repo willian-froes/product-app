@@ -12,11 +12,11 @@ export type ProductFormViewModel = {
 }
 
 export interface UseProductFormViewModel {
-  onCreateProduct?: () => void
+  onCreateOrUpdateProduct?: () => void
 }
 
 export interface ProductFormViewProps {
   isOpen?: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  onCreateProduct: () => void
+  onCreateOrUpdateProduct: () => void
 }

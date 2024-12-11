@@ -16,10 +16,10 @@ import { Modal } from '../../../../components/Modal/Modal.component'
 export const ProductFormView = ({
   isOpen,
   setIsOpen,
-  onCreateProduct,
+  onCreateOrUpdateProduct,
 }: ProductFormViewProps) => {
   const { form, clearForm, handleChange, handleSubmit } =
-    useProductFormViewModel({ onCreateProduct })
+    useProductFormViewModel({ onCreateOrUpdateProduct })
 
   return (
     <Modal isVisible={isOpen} setIsVisible={setIsOpen}>

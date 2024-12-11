@@ -11,6 +11,6 @@ export interface ProductsViewModel {
   }: ListRenderItemInfo<Product>) => React.JSX.Element
   searchText: string
   setSearchText: React.Dispatch<React.SetStateAction<string>>
-  isCreateProductModalOpen: boolean
-  setIsCreateProductModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isProductFormModalOpen: boolean
+  setIsProductFormModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }

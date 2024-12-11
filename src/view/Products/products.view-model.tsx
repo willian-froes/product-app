@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import { ProductsViewModel } from './products.model'
 import { Product } from '../../types/Product'
 import { ProductService } from '../../services/product.service'
@@ -9,7 +10,7 @@ export const useProductsViewModel = (): ProductsViewModel => {
   const [searchText, setSearchText] = useState<string>('')
   const [products, setProducts] = useState<Product[]>([])
 
-  const [isCreateProductModalOpen, setIsCreateProductModalOpen] =
+  const [isProductFormModalOpen, setIsProductFormModalOpen] =
     useState<boolean>(false)
 
   const fetchProducts = async () => {
@@ -30,7 +31,7 @@ export const useProductsViewModel = (): ProductsViewModel => {
   }, [])
 
   useEffect(() => {
-    setIsCreateProductModalOpen(false)
+    setIsProductFormModalOpen(false)
   }, [])
 
   return {
@@ -39,7 +40,7 @@ export const useProductsViewModel = (): ProductsViewModel => {
     renderProductItem,
     searchText,
     setSearchText,
-    isCreateProductModalOpen,
-    setIsCreateProductModalOpen,
+    isProductFormModalOpen,
+    setIsProductFormModalOpen,
   }
 }
