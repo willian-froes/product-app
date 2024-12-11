@@ -41,10 +41,9 @@ export const Label = styled.Text<{
 `
 
 export const Icon = styled(MaterialIcon).attrs<{
-  variant: ButtonVariant
-  color: ButtonColor
   iconSize: ButtonSize
-}>(({ variant, color, iconSize }) => ({
+}>(({ iconSize }) => ({
   size: buttonContentSize[iconSize].iconSize,
-  color: resolveLabelColor(variant, color) as any,
-}))``
+}))<{ variant: ButtonVariant; color: ButtonColor }>`
+  ${({ variant, color }) => resolveLabelColor(variant, color)};
+`

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-import { ProductsViewModel } from './products.model'
+import { ProductsViewModel, SortProductsFields } from './products.model'
 import { Product } from '../../types/Product'
 import { ProductService } from '../../services/product.service'
 import { ListRenderItemInfo } from 'react-native'
@@ -12,14 +12,30 @@ export const useProductsViewModel = (): ProductsViewModel => {
   const { navigate } = useNavigation<AuthStackNavigation>()
 
   const [searchText, setSearchText] = useState<string>('')
+  const [sortField, setSortField] = useState<SortProductsFields>('id')
   const [products, setProducts] = useState<Product[]>([])
 
   const [isProductFormModalOpen, setIsProductFormModalOpen] =
     useState<boolean>(false)
 
-  const filteredProducts: Product[] = products.filter(product =>
-    product.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()),
-  )
+  const filteredProducts: Product[] = products
+    .filter(product =>
+      product.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()),
+    )
+    .sort((previousProduct, nextProduct) => {
+      const previousValue =
+        sortField === 'cost'
+          ? Number(previousProduct[sortField])
+          : previousProduct[sortField]
+      const nextValue =
+        sortField === 'cost'
+          ? Number(nextProduct[sortField])
+          : nextProduct[sortField]
+
+      if (previousValue < nextValue) return -1
+      if (previousValue > nextValue) return 1
+      return 0
+    })
 
   const fetchProducts = async () => {
     try {
@@ -52,6 +68,8 @@ export const useProductsViewModel = (): ProductsViewModel => {
     renderProductItem,
     searchText,
     setSearchText,
+    sortField,
+    setSortField,
     isProductFormModalOpen,
     setIsProductFormModalOpen,
     goToPreferences,

@@ -25,6 +25,8 @@ export const ProductsView = () => {
     renderProductItem,
     searchText,
     setSearchText,
+    sortField,
+    setSortField,
     isProductFormModalOpen,
     setIsProductFormModalOpen,
     goToPreferences,
@@ -66,27 +68,31 @@ export const ProductsView = () => {
               contentContainerStyle={sortOptionsContentContainerStyle}>
               <Button
                 size="small"
-                variant="filled"
                 radius="circle"
                 label="Id"
+                variant={sortField === 'id' ? 'filled' : 'outline'}
+                onPress={() => setSortField('id')}
               />
               <Button
                 size="small"
-                variant="outline"
                 radius="circle"
                 label="Nome"
+                variant={sortField === 'name' ? 'filled' : 'outline'}
+                onPress={() => setSortField('name')}
               />
               <Button
                 size="small"
-                variant="outline"
                 radius="circle"
                 label="Quantidade"
+                variant={sortField === 'quantity' ? 'filled' : 'outline'}
+                onPress={() => setSortField('quantity')}
               />
               <Button
                 size="small"
-                variant="outline"
                 radius="circle"
                 label="Valor uni."
+                variant={sortField === 'cost' ? 'filled' : 'outline'}
+                onPress={() => setSortField('cost')}
               />
             </ScrollView>
           </ProductsListHeader>

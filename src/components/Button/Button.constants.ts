@@ -10,7 +10,7 @@ export const buttonBorderRadius: Record<ButtonRadius, string> = {
 
 export const buttonContentSize: Record<ButtonSize, ButtonSizeDefinitions> = {
   small: {
-    padding: spacing.xs,
+    padding: `${spacing.xs} ${spacing.s}`,
     fontSize: font.size.body.sub.mobile,
     iconSize: 16,
   },

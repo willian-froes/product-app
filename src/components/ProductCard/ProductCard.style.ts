@@ -60,7 +60,7 @@ export const CardFooter = styled.View`
 export const ProductQuantity = styled.Text`
   color: ${({ theme }) => theme.color.gray.normal};
   font-weight: ${({ theme }) => theme.font.weight.bold};
-  font-size: ${({ theme }) => theme.font.size.heading.h5.mobile};
+  font-size: ${({ theme }) => theme.font.size.body.p.mobile};
 `
 
 export const ProductValueContainer = styled.View`

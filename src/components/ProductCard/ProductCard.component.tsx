@@ -24,7 +24,7 @@ export const ProductCard = ({ product, onDelete }: ProductCardProps) => {
 
   const deleteProduct = async () => {
     try {
-      ProductService.removeProduct(product.id)
+      await ProductService.removeProduct(product.id)
       onDelete?.()
     } catch {
       console.error('[ERROR]: Failed to delete product')
