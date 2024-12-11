@@ -11,12 +11,12 @@ import {
 import { useProductsViewModel } from './products.view-model'
 import { Button } from '../../components/Button/Button.component'
 import { Input } from '../../components/Input/Input.component'
-import { Modal } from '../../components/Modal/Modal.component'
 import { ProductFormView } from './view/ProductForm/product-form.view'
 
 export const ProductsView = () => {
   const {
     products,
+    fetchProducts,
     renderProductItem,
     searchText,
     setSearchText,
@@ -48,11 +48,11 @@ export const ProductsView = () => {
         keyExtractor={item => item.id.toString()}
       />
 
-      <Modal
-        isVisible={isCreateProductModalOpen}
-        setIsVisible={setIsCreateProductModalOpen}>
-        <ProductFormView />
-      </Modal>
+      <ProductFormView
+        isOpen={isCreateProductModalOpen}
+        setIsOpen={setIsCreateProductModalOpen}
+        onCreateProduct={async () => fetchProducts()}
+      />
     </Wrapper>
   )
 }

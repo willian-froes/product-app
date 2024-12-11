@@ -3,8 +3,9 @@ import { ListRenderItemInfo } from 'react-native'
 
 import { Product } from '../../types/Product'
 
-export interface ProductsViewModelProps {
+export interface ProductsViewModel {
   products: Product[]
+  fetchProducts: () => Promise<void>
   renderProductItem: ({
     item,
   }: ListRenderItemInfo<Product>) => React.JSX.Element

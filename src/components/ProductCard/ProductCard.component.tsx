@@ -17,8 +17,20 @@ import {
 } from './ProductCard.style'
 import { Button } from '../Button/Button.component'
 import { ProductCardProps } from './ProductCard.types'
+import { ProductService } from '../../services/product.service'
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, onDelete }: ProductCardProps) => {
+  const productTotalValue: number = product.cost * product.quantity
+
+  const deleteProduct = async () => {
+    try {
+      ProductService.removeProduct(product.id)
+      onDelete?.()
+    } catch {
+      console.error('[ERROR]: Failed to delete product')
+    }
+  }
+
   return (
     <Wrapper>
       <ProductIdentifier>{product.id}</ProductIdentifier>
@@ -28,10 +40,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <ProductName>{product.name}</ProductName>
 
           <EditButton name="edit" />
-          <RemoveButton name="delete-outline" />
+          <RemoveButton
+            name="delete-outline"
+            onPress={async () => deleteProduct()}
+          />
         </CardHeader>
 
-        <ProductTotalValue>{product.cost * product.quantity}</ProductTotalValue>
+        <ProductTotalValue>{productTotalValue}</ProductTotalValue>
 
         <CardFooter>
           <ProductValueContainer>

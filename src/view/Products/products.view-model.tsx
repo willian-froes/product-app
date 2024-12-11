@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { ProductsViewModelProps } from './products.model'
+import { ProductsViewModel } from './products.model'
 import { Product } from '../../types/Product'
 import { ProductService } from '../../services/product.service'
 import { ListRenderItemInfo } from 'react-native'
 import { ProductCard } from '../../components/ProductCard/ProductCard.component'
 
-export const useProductsViewModel = (): ProductsViewModelProps => {
+export const useProductsViewModel = (): ProductsViewModel => {
   const [searchText, setSearchText] = useState<string>('')
   const [products, setProducts] = useState<Product[]>([])
 
@@ -22,7 +22,7 @@ export const useProductsViewModel = (): ProductsViewModelProps => {
   }
 
   const renderProductItem = ({ item }: ListRenderItemInfo<Product>) => (
-    <ProductCard product={item} />
+    <ProductCard product={item} onDelete={async () => fetchProducts()} />
   )
 
   useEffect(() => {
@@ -35,6 +35,7 @@ export const useProductsViewModel = (): ProductsViewModelProps => {
 
   return {
     products,
+    fetchProducts,
     renderProductItem,
     searchText,
     setSearchText,
