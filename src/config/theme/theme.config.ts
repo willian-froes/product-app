@@ -13,7 +13,7 @@ export const color: Colors = {
   },
   secondary: {
     dark: '#02060D',
-    normal: '#0E1E33',
+    normal: '#0D1B2E',
     light: '#253C59',
   },
   gray: {
