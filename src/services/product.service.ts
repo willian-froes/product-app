@@ -8,7 +8,7 @@ export const ProductService = {
 
     return products ? JSON.parse(products) : []
   },
-  async saveProduct(product: Omit<Product, 'id'>): Promise<void> {
+  async createProduct(product: Omit<Product, 'id'>): Promise<void> {
     const products: Product[] = await this.getProducts()
 
     const ids: number[] = products.map(
