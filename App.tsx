@@ -6,12 +6,17 @@ import {
   AuthenticatedStackScreens,
   UnauthenticatedStackScreens,
 } from './src/config/stack-navigator/stack-navigator.config'
+import { AuthProvider, useAuthContext } from './src/context/auth/auth.context'
 
 const ScreensProvider = () => {
-  // const { isAuthenticated } = useUserContext()
+  const { isAuthenticated } = useAuthContext()
 
   const resolveCurrentStack = () =>
-    true ? <AuthenticatedStackScreens /> : <UnauthenticatedStackScreens />
+    isAuthenticated ? (
+      <AuthenticatedStackScreens />
+    ) : (
+      <UnauthenticatedStackScreens />
+    )
 
   return resolveCurrentStack()
 }
@@ -19,7 +24,9 @@ const ScreensProvider = () => {
 const App: () => React.JSX.Element = () => (
   <NavigationContainer>
     <ThemeProvider>
-      <ScreensProvider />
+      <AuthProvider>
+        <ScreensProvider />
+      </AuthProvider>
     </ThemeProvider>
   </NavigationContainer>
 )

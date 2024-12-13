@@ -5,7 +5,7 @@ import {
   ProductFormViewModel,
   UseProductFormViewModel,
 } from './product-form.model'
-import { productFormInitialState } from './product.constants'
+import { productFormInitialState } from './product-form.constants'
 import { ProductService } from '../../../../services/product.service'
 import { Product } from '../../../../types/Product'
 
@@ -20,7 +20,7 @@ export const useProductFormViewModel = ({
 
   const handleSubmit = async () => {
     try {
-      await ProductService.saveProduct(form as unknown as Product)
+      await ProductService.createProduct(form as unknown as Product)
       clearForm()
       onCreateOrUpdateProduct?.()
     } catch {
